@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_14_205426) do
+ActiveRecord::Schema.define(version: 2019_06_15_004356) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -116,7 +116,7 @@ ActiveRecord::Schema.define(version: 2019_06_14_205426) do
     t.integer "ryder_cup_wins"
     t.integer "ryder_cup_losses"
     t.integer "ryder_cup_ties"
-    t.integer "record_2017"
+    t.string "record_2017"
     t.integer "handicap_low_net"
     t.integer "handicap_skins"
     t.datetime "created_at", null: false

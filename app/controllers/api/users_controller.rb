@@ -1,6 +1,6 @@
 class Api::UsersController < ApplicationController
 
-  before_action :authenticate_user, only: [:show, :update]
+  before_action :authenticate_user, only: [:index, :show, :update, :destroy]
 
   def index
     @users = User.all
@@ -24,7 +24,7 @@ class Api::UsersController < ApplicationController
   end
 
   def show
-    @user = current_user
+    @user = User.find(params[:id])
     render 'show.json.jbuilder'
   end
 
@@ -52,7 +52,7 @@ class Api::UsersController < ApplicationController
   end
     
   def destroy
-    @user = User.find(params[:id])
+    @user = current_user
     @user.destroy
     @users = User.all
     render json:{message: "User has been deleted."}
