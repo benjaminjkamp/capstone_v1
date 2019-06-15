@@ -1,2 +1,5 @@
-json.round @match.round.name
-json.match "#{@match.teams[0].name} Vs. #{@match.teams[1].name}"
+json.partial! "match.json.jbuilder", match: @match
+
+json.round do
+  json.partial! @match.round, partial: "api/rounds/round", as: :round
+end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_13_091605) do
+ActiveRecord::Schema.define(version: 2019_06_14_205426) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(version: 2019_06_13_091605) do
     t.integer "hdcp_hole_18"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "location"
   end
 
   create_table "matches", force: :cascade do |t|
@@ -120,6 +121,7 @@ ActiveRecord::Schema.define(version: 2019_06_13_091605) do
     t.integer "handicap_skins"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "password_digest"
   end
 
 end

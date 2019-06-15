@@ -1,5 +1,7 @@
 class Api::UsersController < ApplicationController
 
+  before_action :authenticate_user, only: [:show, :update]
+
   def index
     @users = User.all
     render 'index.json.jbuilder'
@@ -10,7 +12,9 @@ class Api::UsersController < ApplicationController
       first_name: params[:first_name],
       last_name: params[:last_name],
       phone_number: params[:phone_number],
-      email: params[:email]
+      email: params[:email],
+      password: params[:password],
+      password_confirmation: params[:password_confirmation]
       )
     if @user.save
       render 'show.json.jbuilder'
@@ -20,16 +24,17 @@ class Api::UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = current_user
     render 'show.json.jbuilder'
   end
 
   def update
-    @user = User.find(params[:id])
+    @user = current_user
     @user.first_name = params[:first_name] || @user.first_name
     @user.last_name = params[:last_name] || @user.last_name
     @user.phone_number = params[:phone_number] || @user.phone_number
     @user.email = params[:email] || @user.email
+    
     @user.avg_gnc = params[:avg_gnc] || @user.avg_gnc
     @user.avg_two_year = params[:avg_two_year] || @user.avg_two_year
     @user.ryder_cup_wins = params[:ryder_cup_wins] || @user.ryder_cup_wins
@@ -50,7 +55,7 @@ class Api::UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.destroy
     @users = User.all
-    render 'index.json.jbuilder'
+    render json:{message: "User has been deleted."}
   end
 
 

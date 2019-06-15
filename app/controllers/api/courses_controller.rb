@@ -10,6 +10,8 @@ class Api::CoursesController < ApplicationController
   def create
     @course = Course.new(
       name: params[:name],
+      location: params[:location],      
+      
       par_hole_1: params[:par_hole_1],
       par_hole_2: params[:par_hole_2],
       par_hole_3: params[:par_hole_2],
@@ -65,6 +67,10 @@ class Api::CoursesController < ApplicationController
 
   def update
     @course = Course.find(params[:id])
+
+    @course.name = params[:name] || @course.name
+    @course.location = params[:location] || @course.location
+
     @course.par_hole_1 = params[:par_hole_1] || @course.par_hole_1
     @course.par_hole_2 = params[:par_hole_2] || @course.par_hole_2
     @course.par_hole_3 = params[:par_hole_3] || @course.par_hole_3

@@ -1,4 +1,8 @@
-  json.Course_Name course.name
+json.id course.id
+json.name course.name
+json.location course.location
+
+json.pars do
   json.hole1_par course.par_hole_1
   json.hole2_par course.par_hole_2
   json.hole3_par course.par_hole_3
@@ -17,7 +21,9 @@
   json.hole16_par course.par_hole_16
   json.hole17_par course.par_hole_17
   json.hole18_par course.par_hole_18
+end
 
+json.handicaps do
   json.hole1_handicap course.hdcp_hole_1
   json.hole2_handicap course.hdcp_hole_2
   json.hole3_handicap course.hdcp_hole_3
@@ -36,3 +42,4 @@
   json.hole16_handicap course.hdcp_hole_16
   json.hole17_handicap course.hdcp_hole_17
   json.hole18_handicap course.hdcp_hole_18
+end

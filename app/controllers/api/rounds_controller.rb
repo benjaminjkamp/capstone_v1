@@ -38,6 +38,7 @@ class Api::RoundsController < ApplicationController
   def destroy
     @round = Round.find(params[:id])
     @round.destroy
+    render json:{message: "Round has been deleted."}
   end
 
 end

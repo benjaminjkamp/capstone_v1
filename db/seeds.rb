@@ -108,47 +108,55 @@ User.create(
       first_name: "Adam",
       last_name: "Kamp",
       phone_number: "773-999-0077",
-      email: "ak@gmail.com"
+      email: "ak@gmail.com",
+      password: "pword"
     },
     {
       first_name: "Phil",
       last_name: "Kamp",
       phone_number: "312-333-2220",
-      email: "pk@gmail.com"
+      email: "pk@gmail.com",
+      password: "pword"
     },
     {
       first_name: "Mark",
       last_name: "Cerreta",
       phone_number: "312-444-2220",
-      email: "mc@gmail.com"
+      email: "mc@gmail.com",
+      password: "pword"
     },
     {
       first_name: "Sam",
       last_name: "Cerreta",
       phone_number: "312-111-2220",
-      email: "sc@gmail.com"
+      email: "sc@gmail.com",
+      password: "pword"
     },
     {
       first_name: "Mark",
       last_name: "Warburton",
       phone_number: "444-111-2220",
-      email: "mw@gmail.com"
+      email: "mw@gmail.com",
+      password: "pword"
     },
     {
       first_name: "Jeff",
       last_name: "Warburton",
       phone_number: "444-222-2220",
-      email: "jw@gmail.com"
+      email: "jw@gmail.com",
+      password: "pword"
     },{
       first_name: "Brian",
       last_name: "O'neal",
       phone_number: "888-222-2220",
-      email: "bo@gmail.com"
+      email: "bo@gmail.com",
+      password: "pword"
     },{
       first_name: "Tom",
       last_name: "O'neal",
       phone_number: "888-222-2220",
-      email: "to@gmail.com"
+      email: "to@gmail.com",
+      password: "pword"
     },
     
   ]

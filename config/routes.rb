@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     #user routes
     get "/users" => "users#index"
     post "/users" => "users#create"
-    get "/users/:id" => "users#show"
+    get "/users/me" => "users#show"
     patch "/users/:id" => "users#update"
     delete "/users/:id" => "users#destroy"
 
@@ -38,6 +38,9 @@ Rails.application.routes.draw do
     get "/rounds/:id" => "rounds#show"
     patch "/rounds/:id" => "rounds#update"
     delete "/rounds/:id" => "rounds#destroy"
+
+    #session routes
+    post "/sessions" => "sessions#create"
 
   end
 

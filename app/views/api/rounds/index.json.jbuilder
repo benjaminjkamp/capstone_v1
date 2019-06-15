@@ -1,3 +1,4 @@
 json.array! @rounds.each do |round|
-  json.round round.name
+  json.id round.id
+  json.name round.name
 end
