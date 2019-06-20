@@ -73,10 +73,6 @@ Match.create(
       round_id: 1,
       name: "Team 3 vs Team 4"
     },
-    {
-      round_id: 1,
-      name: "Team 5 vs Team 6"
-    }
   ]
 )
 

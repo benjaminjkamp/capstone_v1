@@ -1,4 +1,7 @@
 class Api::MatchesController < ApplicationController
+
+  before_action :authenticate_user, only: [:create, :update, :destroy]
+
   def create
     @match = Match.new(
       round_id: params[:round_id],
@@ -32,6 +35,8 @@ class Api::MatchesController < ApplicationController
           user_id: params[:user_id_4],
           team_id: @team2.id
           )
+        @match.name = "#{@team1.name} Vs. #{@team2.name}"
+        @match.save
         render 'show.json.jbuilder'
       else
         render json:{errors: @match.errors.full_messages}, status: :unprocessable_entity
@@ -52,7 +57,7 @@ class Api::MatchesController < ApplicationController
     @team1 = @match.teams[0]
     @team2 = @match.teams[1]
 
-    @match.name = "#{@team1.name} Vs. #{@team2.name}"
+    # @match.name = "#{@team1.name} Vs. #{@team2.name}"
 
     @team1.score_hole_1 = params[:team1_score1] || @team1.score_hole_1 || 0
     @team1.score_hole_2 = params[:team1_score2] || @team1.score_hole_2 || 0

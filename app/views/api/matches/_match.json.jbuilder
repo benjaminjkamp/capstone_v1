@@ -42,9 +42,9 @@ json.teams do
   end
 
   json.team_2 do
+    json.id match.teams[1].id
+    json.name match.teams[1].name
     json.scores do
-      json.id match.teams[1].id
-      json.name match.teams[1].name
       json.score_1 match.teams[1].score_hole_1
       json.score_2 match.teams[1].score_hole_2
       json.score_3 match.teams[1].score_hole_3

@@ -1,5 +1,7 @@
 class Api::RoundsController < ApplicationController
 
+  before_action :authenticate_user, only: [:create, :update, :destroy]
+
   def index
     @rounds = Round.all
     render 'index.json.jbuilder'    
@@ -25,7 +27,7 @@ class Api::RoundsController < ApplicationController
 
   def update
     @round = Round.find(params[:id])
-    @round.name = "#{params[:year]} - #{params[:format]}" || @round.name
+    @round.name = params[:name] || @round.name
     @round.course_id = params[:course_id] || @round.course_id
 
     if @round.save
