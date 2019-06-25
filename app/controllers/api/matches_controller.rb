@@ -19,25 +19,36 @@ class Api::MatchesController < ApplicationController
         total_score: 0
         )
       if @team1.save && @team2.save
-        UserTeam.create(
+        @user_team1 = UserTeam.new(
           user_id: params[:user_id_1],
           team_id: @team1.id
           )
-        UserTeam.create(
+        @user_team2 = UserTeam.new(
           user_id: params[:user_id_2],
           team_id: @team1.id
           )
-        UserTeam.create(
+        @user_team3 = UserTeam.new(
           user_id: params[:user_id_3],
           team_id: @team2.id
           )
-        UserTeam.create(
+        @user_team4 = UserTeam.new(
           user_id: params[:user_id_4],
           team_id: @team2.id
           )
-        @match.name = "#{@team1.name} vs. #{@team2.name}"
-        @match.save
-        render 'show.json.jbuilder'
+        if @user_team1.save && @user_team2.save && @user_team3.save && @user_team4.save
+          @match.name = "#{@team1.name} vs. #{@team2.name}"
+          @match.save
+          render 'show.json.jbuilder'
+        else
+          @match.destroy
+          @team1.destroy
+          @team2.destroy
+          @user_team1.destroy
+          @user_team2.destroy
+          @user_team3.destroy
+          
+          render json:{errors: @match.errors.full_messages}, status: :unprocessable_entity
+        end
       else
         render json:{errors: @match.errors.full_messages}, status: :unprocessable_entity
       end
