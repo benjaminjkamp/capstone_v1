@@ -35,7 +35,7 @@ class Api::MatchesController < ApplicationController
           user_id: params[:user_id_4],
           team_id: @team2.id
           )
-        @match.name = "#{@team1.name} Vs. #{@team2.name}"
+        @match.name = "#{@team1.name} vs. #{@team2.name}"
         @match.save
         render 'show.json.jbuilder'
       else
@@ -156,9 +156,19 @@ class Api::MatchesController < ApplicationController
     @match = Match.find(params[:id])
     @team1 = @match.teams[0]
     @team2 = @match.teams[1]
+    @team1_userteam1 = @match.teams[0].user_teams[0]
+    @team1_userteam2 = @match.teams[0].user_teams[1]
+    @team2_userteam1 = @match.teams[1].user_teams[0]
+    @team2_userteam2 = @match.teams[1].user_teams[1]
+
+
     @match.destroy
     @team1.destroy
     @team2.destroy
+    @team1_userteam1.destroy
+    @team1_userteam2.destroy
+    @team2_userteam1.destroy
+    @team2_userteam2.destroy
 
     render json:{message: "Match has been deleted."}
   end
