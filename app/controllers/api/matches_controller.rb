@@ -70,6 +70,7 @@ class Api::MatchesController < ApplicationController
 
     # @match.name = "#{@team1.name} Vs. #{@team2.name}"
 
+    @team1.name = params[:team1_name] || @team1.name
     @team1.score_hole_1 = params[:team1_score1] || @team1.score_hole_1 || 0
     @team1.score_hole_2 = params[:team1_score2] || @team1.score_hole_2 || 0
     @team1.score_hole_3 = params[:team1_score3] || @team1.score_hole_3 || 0
@@ -89,6 +90,7 @@ class Api::MatchesController < ApplicationController
     @team1.score_hole_17 = params[:team1_score17] || @team1.score_hole_17 || 0
     @team1.score_hole_18 = params[:team1_score18] || @team1.score_hole_18 || 0
 
+    @team2.name = params[:team2_name] || @team2.name
     @team2.score_hole_1 = params[:team2_score1] || @team2.score_hole_1 || 0
     @team2.score_hole_2 = params[:team2_score2] || @team2.score_hole_2 || 0
     @team2.score_hole_3 = params[:team2_score3] || @team2.score_hole_3 || 0
@@ -153,6 +155,7 @@ class Api::MatchesController < ApplicationController
     end
 
     if @team1.save && @team2.save
+      @match.name = "#{@team1.name} vs. #{@team2.name}"
       @match.save
       render 'show.json.jbuilder'
     else
