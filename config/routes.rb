@@ -39,6 +39,11 @@ Rails.application.routes.draw do
     patch "/rounds/:id" => "rounds#update"
     delete "/rounds/:id" => "rounds#destroy"
 
+    #tournament routes
+    get "/tournaments" => "tournaments#index"
+    post "/tournaments" => "tournaments#create"
+    get "/tournaments/:id" => "tournaments#show"
+
     #session routes
     post "/sessions" => "sessions#create"
 
