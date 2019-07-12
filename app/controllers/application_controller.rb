@@ -26,4 +26,10 @@ class ApplicationController < ActionController::Base
       render json: {}, status: :unauthorized
     end
   end
+
+  # def authenticate_commissioner
+  #   unless current_user.id == @tournament.user_id
+  #     render json: {}, status: :unauthorized
+  #   end
+  # end
 end

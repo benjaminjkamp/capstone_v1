@@ -43,6 +43,7 @@ Rails.application.routes.draw do
     get "/tournaments" => "tournaments#index"
     post "/tournaments" => "tournaments#create"
     get "/tournaments/:id" => "tournaments#show"
+    patch "/tournaments/:id" => "tournaments#update"
 
     #session routes
     post "/sessions" => "sessions#create"
