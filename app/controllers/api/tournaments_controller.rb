@@ -14,6 +14,7 @@ class Api::TournamentsController < ApplicationController
       user_id: current_user.id
       )
     if @tournament.save
+      @commissioner = User.find(@tournament.user_id)
       render 'show.json.jbuilder'
     else
       render json:{errors: @user.errors.full_messages}, status: :unprocessable_entity
