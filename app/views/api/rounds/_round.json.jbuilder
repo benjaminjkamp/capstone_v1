@@ -1,5 +1,9 @@
 json.id round.id
 json.name round.name
+
+json.tournament_id round.tournament_id
+json.tournament_name round.tournament.name
+
 json.course do
   json.partial! round.course, partial: "api/courses/course", as: :course
 end

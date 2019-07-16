@@ -79,84 +79,257 @@
 # Team.create(
 #   [
 #     {
-#       name: "Team Kamp",
-#       match_id: 1
-
-#     },
-#     {
-#       name: "Team Cerreta",
+#       name: "Team Red",
 #       match_id: 1
 #     },
 #     {
-#       name: "Team Warburton",
+#       name: "Team Blue",
+#       match_id: 1
+#     },
+#     {
+#       name: "Team Red",
 #       match_id: 2
 #     },
 #     {
-#       name: "Team O'Neil",
+#       name: "Team Blue",
 #       match_id: 2
 #     }
 #   ]
 # )
 
-# User.create(
-#   [
-#     {
-#       first_name: "Adam",
-#       last_name: "Kamp",
-#       phone_number: "773-999-0077",
-#       email: "ak@gmail.com",
-#       password: "pword"
-#     },
-#     {
-#       first_name: "Phil",
-#       last_name: "Kamp",
-#       phone_number: "312-333-2220",
-#       email: "pk@gmail.com",
-#       password: "pword"
-#     },
-#     {
-#       first_name: "Mark",
-#       last_name: "Cerreta",
-#       phone_number: "312-444-2220",
-#       email: "mc@gmail.com",
-#       password: "pword"
-#     },
-#     {
-#       first_name: "Sam",
-#       last_name: "Cerreta",
-#       phone_number: "312-111-2220",
-#       email: "sc@gmail.com",
-#       password: "pword"
-#     },
-#     {
-#       first_name: "Mark",
-#       last_name: "Warburton",
-#       phone_number: "444-111-2220",
-#       email: "mw@gmail.com",
-#       password: "pword"
-#     },
-#     {
-#       first_name: "Jeff",
-#       last_name: "Warburton",
-#       phone_number: "444-222-2220",
-#       email: "jw@gmail.com",
-#       password: "pword"
-#     },{
-#       first_name: "Brian",
-#       last_name: "O'neal",
-#       phone_number: "888-222-2220",
-#       email: "bo@gmail.com",
-#       password: "pword"
-#     },{
-#       first_name: "Tom",
-#       last_name: "O'neal",
-#       phone_number: "888-222-2220",
-#       email: "to@gmail.com",
-#       password: "pword"
-#     },
+User.create(
+  [
+    {
+      first_name: "Mike",
+      last_name: "Messbarger",
+      phone_number: "773-999-0077",
+      email: "mm@gmail.com",
+      password: "pword"
+    },
+    {
+      first_name: "Mike",
+      last_name: "Dezenski",
+      phone_number: "312-333-2220",
+      email: "md@gmail.com",
+      password: "pword"
+    },
+    {
+      first_name: "Mark",
+      last_name: "Cerreta",
+      phone_number: "312-444-2220",
+      email: "mc@gmail.com",
+      password: "pword"
+    },
+    {
+      first_name: "Geoff",
+      last_name: "Kehoe",
+      phone_number: "312-111-2220",
+      email: "gk@gmail.com",
+      password: "pword"
+    },
+    {
+      first_name: "Doug",
+      last_name: "Steinard",
+      phone_number: "444-111-2220",
+      email: "ds@gmail.com",
+      password: "pword"
+    },
+    {
+      first_name: "Brian",
+      last_name: "O'neal",
+      phone_number: "888-222-2220",
+      email: "bo@gmail.com",
+      password: "pword"
+    },
+    {
+      first_name: "Rob",
+      last_name: "Armstrong",
+      phone_number: "444-222-2220",
+      email: "ra@gmail.com",
+      password: "pword"
+    },
     
-#   ]
-# )
+    {
+      first_name: "Mark",
+      last_name: "Warburton",
+      phone_number: "888-222-2220",
+      email: "mw@gmail.com",
+      password: "pword"
+    },
+    {
+      first_name: "Cam",
+      last_name: "Denbrock",
+      phone_number: "773-999-0077",
+      email: "cd@gmail.com",
+      password: "pword"
+    },
+    {
+      first_name: "Mark",
+      last_name: "Blair",
+      phone_number: "312-333-2220",
+      email: "mb@gmail.com",
+      password: "pword"
+    },
+    {
+      first_name: "Sam",
+      last_name: "Cerreta",
+      phone_number: "312-444-2220",
+      email: "sc@gmail.com",
+      password: "pword"
+    },
+    {
+      first_name: "Daniel",
+      last_name: "H",
+      phone_number: "312-111-2220",
+      email: "dh@gmail.com",
+      password: "pword"
+    },
+    {
+      first_name: "Phil",
+      last_name: "K",
+      phone_number: "444-111-2220",
+      email: "pk@gmail.com",
+      password: "pword"
+    },
+    {
+      first_name: "Tom",
+      last_name: "O",
+      phone_number: "888-222-2220",
+      email: "to@gmail.com",
+      password: "pword"
+    },
+    {
+      first_name: "Steve",
+      last_name: "G",
+      phone_number: "444-222-2220",
+      email: "sg@gmail.com",
+      password: "pword"
+    },
+    
+    {
+      first_name: "Jeff",
+      last_name: "D",
+      phone_number: "888-222-2220",
+      email: "jd@gmail.com",
+      password: "pword"
+    },
+    {
+      first_name: "Bob",
+      last_name: "C",
+      phone_number: "773-999-0077",
+      email: "bc@gmail.com",
+      password: "pword"
+    },
+    {
+      first_name: "Jim",
+      last_name: "K",
+      phone_number: "312-333-2220",
+      email: "jk@gmail.com",
+      password: "pword"
+    },
+    {
+      first_name: "Doug",
+      last_name: "B",
+      phone_number: "312-444-2220",
+      email: "db@gmail.com",
+      password: "pword"
+    },
+    {
+      first_name: "Jeff",
+      last_name: "W",
+      phone_number: "312-111-2220",
+      email: "jw@gmail.com",
+      password: "pword"
+    },
+    {
+      first_name: "Joe",
+      last_name: "C",
+      phone_number: "444-111-2220",
+      email: "jc@gmail.com",
+      password: "pword"
+    },
+    {
+      first_name: "Adam",
+      last_name: "K",
+      phone_number: "888-222-2220",
+      email: "ak@gmail.com",
+      password: "pword"
+    },
+    {
+      first_name: "Bob",
+      last_name: "R",
+      phone_number: "444-222-2220",
+      email: "br@gmail.com",
+      password: "pword"
+    },
+    
+    {
+      first_name: "Darrell",
+      last_name: "B",
+      phone_number: "888-222-2220",
+      email: "db@gmail.com",
+      password: "pword"
+    },
+    {
+      first_name: "Ben",
+      last_name: "H",
+      phone_number: "888-222-2220",
+      email: "bh@gmail.com",
+      password: "pword"
+    },
+    {
+      first_name: "George",
+      last_name: "C",
+      phone_number: "888-222-2220",
+      email: "gc@gmail.com",
+      password: "pword"
+    },
+    {
+      first_name: "Ron",
+      last_name: "S",
+      phone_number: "888-222-2220",
+      email: "rs@gmail.com",
+      password: "pword"
+    },
+    {
+      first_name: "Tommy Jr",
+      last_name: "O",
+      phone_number: "888-222-2220",
+      email: "tjo@gmail.com",
+      password: "pword"
+    },
+    {
+      first_name: "Chad",
+      last_name: "B",
+      phone_number: "888-222-2220",
+      email: "cb@gmail.com",
+      password: "pword"
+    },
+    {
+      first_name: "Scott",
+      last_name: "W",
+      phone_number: "888-222-2220",
+      email: "sw@gmail.com",
+      password: "pword"
+    },
+    {
+      first_name: "Todd",
+      last_name: "S",
+      phone_number: "888-222-2220",
+      email: "ts@gmail.com",
+      password: "pword"
+    },
+    {
+      first_name: "Ali",
+      last_name: "Z",
+      phone_number: "888-222-2220",
+      email: "az@gmail.com",
+      password: "pword"
+    },
+    
+    
+  ]
+)
 
 # UserTeam.create(
 #   [
