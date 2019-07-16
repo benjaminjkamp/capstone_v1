@@ -10,7 +10,8 @@ class Api::RoundsController < ApplicationController
   def create
     @round = Round.new(
       name: "#{params[:year]} - #{params[:format]}",
-      course_id: params[:course_id]
+      course_id: params[:course_id],
+      tournament_id: params[:tournament_id]
       )
 
     if @round.save
