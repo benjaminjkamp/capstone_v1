@@ -21,7 +21,7 @@ class Api::UsersController < ApplicationController
       ryder_cup_wins: params[:ryder_cup_wins],
       ryder_cup_losses: params[:ryder_cup_losses],
       ryder_cup_ties: params[:ryder_cup_ties],
-      record_2017: params[:record_2017]2017,
+      record_2017: params[:record_2017],
       handicap_low_net: params[:handicap_low_net],
       handicap_skins: params[:handicap_skins]
       )
