@@ -14,7 +14,16 @@ class Api::UsersController < ApplicationController
       phone_number: params[:phone_number],
       email: params[:email],
       password: params[:password],
-      password_confirmation: params[:password_confirmation]
+      password_confirmation: params[:password_confirmation],
+
+      avg_gnc: params[:avg_gnc],
+      avg_two_year: params[:avg_two_year],
+      ryder_cup_wins: params[:ryder_cup_wins],
+      ryder_cup_losses: params[:ryder_cup_losses],
+      ryder_cup_ties: params[:ryder_cup_ties],
+      record_2017: params[:record_2017]2017,
+      handicap_low_net: params[:handicap_low_net],
+      handicap_skins: params[:handicap_skins]
       )
     if @user.save
       render 'show.json.jbuilder'
