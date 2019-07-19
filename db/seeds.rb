@@ -1,16 +1,18 @@
 Course.create!([
   {name: "Arthur Hills Golf Course", par_hole_1: 4, par_hole_2: 4, par_hole_3: 5, par_hole_4: 4, par_hole_5: 4, par_hole_6: 5, par_hole_7: 3, par_hole_8: 4, par_hole_9: 3, par_hole_10: 4, par_hole_11: 5, par_hole_12: 4, par_hole_13: 5, par_hole_14: 3, par_hole_15: 4, par_hole_16: 3, par_hole_17: 4, par_hole_18: 5, hdcp_hole_1: 9, hdcp_hole_2: 13, hdcp_hole_3: 7, hdcp_hole_4: 11, hdcp_hole_5: 1, hdcp_hole_6: 3, hdcp_hole_7: 17, hdcp_hole_8: 5, hdcp_hole_9: 15, hdcp_hole_10: 14, hdcp_hole_11: 2, hdcp_hole_12: 12, hdcp_hole_13: 10, hdcp_hole_14: 18, hdcp_hole_15: 4, hdcp_hole_16: 16, hdcp_hole_17: 6, hdcp_hole_18: 8, location: "250 Heather Dr, Harbor Springs, MI 49740"}
 ])
-Match.create!([
-  {round_id: 1, name: "Team Red vs. Team Blue", winner: "Team Blue"},
-  {round_id: 1, name: "Team Red vs. Team Blue", winner: "Team Red"}
-])
 Tournament.create!([
   {name: "GNC Tournament", user_id: 31, red_team_2mantotal: 0, red_team_2manbb: 0, red_team_altshot: 0, red_team_stableford: 0, red_team_head2head: 0, blue_team_2mantotal: 0, blue_team_2manbb: 0, blue_team_altshot: 0, blue_team_stableford: 0, blue_team_head2head: 0}
 ])
 Round.create!([
   {name: "2018 - 2 Man Total Score", course_id: 1, tournament_id: 1}
 ])
+Match.create!([
+  {round_id: 1, name: "Team Red vs. Team Blue", winner: "Team Blue"},
+  {round_id: 1, name: "Team Red vs. Team Blue", winner: "Team Red"}
+])
+
+
 Team.create!([
   {name: "Team Red", match_id: 1, score_hole_1: "0.0", score_hole_2: "0.0", score_hole_3: "0.0", score_hole_4: "0.0", score_hole_5: "0.0", score_hole_6: "0.0", score_hole_7: "1.0", score_hole_8: "0.0", score_hole_9: "0.0", score_hole_10: "0.0", score_hole_11: "1.0", score_hole_12: "0.5", score_hole_13: "1.0", score_hole_14: "0.0", score_hole_15: "1.0", score_hole_16: "0.0", score_hole_17: "1.0", score_hole_18: "0.0", total_score: "5.5"},
   {name: "Team Blue", match_id: 1, score_hole_1: "1.0", score_hole_2: "1.0", score_hole_3: "1.0", score_hole_4: "1.0", score_hole_5: "1.0", score_hole_6: "1.0", score_hole_7: "0.0", score_hole_8: "1.0", score_hole_9: "1.0", score_hole_10: "1.0", score_hole_11: "0.0", score_hole_12: "0.5", score_hole_13: "0.0", score_hole_14: "1.0", score_hole_15: "0.0", score_hole_16: "1.0", score_hole_17: "0.0", score_hole_18: "1.0", total_score: "12.5"},
