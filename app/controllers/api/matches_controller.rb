@@ -9,12 +9,12 @@ class Api::MatchesController < ApplicationController
       )
     if @match.save
       @team1 = Team.new(
-        name: params[:name_team1],
+        name: "Team Red",
         match_id: @match.id,
         total_score: 0
         )
       @team2 = Team.new(
-        name: params[:name_team2],
+        name: "Team Blue",
         match_id: @match.id,
         total_score: 0
         )
