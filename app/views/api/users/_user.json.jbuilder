@@ -16,6 +16,7 @@ json.record_2017 user.record_2017
 json.low_net_handicap user.handicap_low_net
 json.skins_handicap user.handicap_skins
 
+
 # if current_user == user
   json.personal_info do
     json.phone_number user.phone_number
