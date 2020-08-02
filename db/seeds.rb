@@ -5,11 +5,11 @@ Tournament.create!([
   {name: "GNC Tournament", user_id: 31, red_team_2mantotal: 0, red_team_2manbb: 0, red_team_altshot: 0, red_team_stableford: 0, red_team_head2head: 0, blue_team_2mantotal: 0, blue_team_2manbb: 0, blue_team_altshot: 0, blue_team_stableford: 0, blue_team_head2head: 0}
 ])
 Round.create!([
-  {name: "2018 - 2 Man Total Score", course_id: 1, tournament_id: 1}
+  {name: "2018 - 2 Man Best Ball", course_id: 1, tournament_id: 1, format: "2 Man Best Ball"}
 ])
 Match.create!([
-  {round_id: 1, name: "Team Red vs. Team Blue", winner: "Team Blue", mode: "2 Man Best Ball"},
-  {round_id: 1, name: "Team Red vs. Team Blue", winner: "Team Red", mode: "2 Man Best Ball"}
+  {round_id: 1, name: "Team Red vs. Team Blue", winner: "Team Blue"},
+  {round_id: 1, name: "Team Red vs. Team Blue", winner: "Team Red"}
 ])
 
 

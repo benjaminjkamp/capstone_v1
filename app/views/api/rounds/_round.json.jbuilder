@@ -1,5 +1,6 @@
 json.id round.id
 json.name round.name
+json.format round.format
 
 json.tournament_id round.tournament_id
 json.tournament_name round.tournament.name
