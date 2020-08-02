@@ -8,8 +8,8 @@ Round.create!([
   {name: "2018 - 2 Man Total Score", course_id: 1, tournament_id: 1}
 ])
 Match.create!([
-  {round_id: 1, name: "Team Red vs. Team Blue", winner: "Team Blue"},
-  {round_id: 1, name: "Team Red vs. Team Blue", winner: "Team Red"}
+  {round_id: 1, name: "Team Red vs. Team Blue", winner: "Team Blue", mode: "2 Man Best Ball"},
+  {round_id: 1, name: "Team Red vs. Team Blue", winner: "Team Red", mode: "2 Man Best Ball"}
 ])
 
 

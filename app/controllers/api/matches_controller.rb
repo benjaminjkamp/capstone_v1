@@ -5,6 +5,7 @@ class Api::MatchesController < ApplicationController
   def create
     @match = Match.new(
       round_id: params[:round_id],
+      mode: params[:mode]
       # name: params[:name_match]
       )
     if @match.save
