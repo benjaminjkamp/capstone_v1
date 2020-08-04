@@ -19,25 +19,40 @@ class Api::MatchesController < ApplicationController
         total_score: 0
         )
       if @team1.save && @team2.save
+        @user1 = params[:user_id_1]
+        @user2 = params[:user_id_2]
+        @user3 = params[:user_id_3]
+        @user4 = params[:user_id_4]
+
         @user_team1 = UserTeam.new(
-          user_id: params[:user_id_1],
+          user_id: @user1,
           team_id: @team1.id
           )
         @user_team2 = UserTeam.new(
-          user_id: params[:user_id_2],
+          user_id: @user2,
           team_id: @team1.id
           )
         @user_team3 = UserTeam.new(
-          user_id: params[:user_id_3],
+          user_id: @user3,
           team_id: @team2.id
           )
         @user_team4 = UserTeam.new(
-          user_id: params[:user_id_4],
+          user_id: @user4,
           team_id: @team2.id
           )
+        
         if @user_team1.save && @user_team2.save && @user_team3.save && @user_team4.save
           @match.name = "#{@team1.name} vs. #{@team2.name}"
           @match.save
+
+          @match.scores(@match, @user1, @team1)
+          @match.scores(@match, @user2, @team1)
+          @match.scores(@match, @user3, @team2)
+          @match.scores(@match, @user4, @team2)
+
+          
+
+
           render 'show.json.jbuilder'
         else
           @match.destroy
@@ -71,6 +86,12 @@ class Api::MatchesController < ApplicationController
     # @match.name = "#{@team1.name} Vs. #{@team2.name}"
 
     @team1.name = params[:team1_name] || @team1.name
+    team1_scores = calculate_hole_winner(@team1, @team2)
+    team2_scores = calculate_hole_winner(@team2, @team1)
+    @team1.score_hole_1 = calculate_score(@team1, 1)
+
+
+
     @team1.score_hole_1 = params[:team1_score1] || @team1.score_hole_1 || 0
     @team1.score_hole_2 = params[:team1_score2] || @team1.score_hole_2 || 0
     @team1.score_hole_3 = params[:team1_score3] || @team1.score_hole_3 || 0

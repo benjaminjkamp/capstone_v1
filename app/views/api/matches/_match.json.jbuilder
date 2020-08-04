@@ -2,7 +2,7 @@ json.id match.id
 json.name match.name
 json.team_1_score match.teams[0].total_score
 json.team_2_score match.teams[1].total_score
-json.match_leader match.winner
+json.winner match.winner
 
 json.teams do
   json.array! match.teams.order(:id).each do |team|
