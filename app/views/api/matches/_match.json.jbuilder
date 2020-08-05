@@ -8,7 +8,8 @@ json.teams do
   json.array! match.teams.order(:id).each do |team|
     json.id team.id
     json.name team.name
-    json.scores do
+    json.scores team.scores
+    json.team_scores do
       json.score_1 team.score_hole_1
       json.score_2 team.score_hole_2
       json.score_3 team.score_hole_3
@@ -30,7 +31,7 @@ json.teams do
     end
     json.players do
       json.array! team.users.order(:id).each do |user|
-
+        
         json.partial! user, partial: "/api/users/user", as: :user
         
       end

@@ -16,6 +16,14 @@ class Match < ApplicationRecord
     
   end
 
+  def team(user, team)
+    user_team = UserTeam.new(
+      user_id: user,
+      team_id: team
+    )
+    return user_team
+  end
+
   def scores(match, user, team)
     index = 1
     18.times do |hole|
@@ -26,7 +34,10 @@ class Match < ApplicationRecord
         hole: index
         
       )
-      score.save
+      if score.save
+      else
+        break
+      end
       index += 1
     end
   end

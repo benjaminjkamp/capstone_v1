@@ -3,6 +3,11 @@ class Api::MatchesController < ApplicationController
   before_action :authenticate_user, only: [:create, :update, :destroy]
 
   def create
+    @user1 = params[:user_id_1]
+    @user2 = params[:user_id_2]
+    @user3 = params[:user_id_3]
+    @user4 = params[:user_id_4]
+    
     @match = Match.new(
       round_id: params[:round_id]
       # name: params[:name_match]
@@ -19,27 +24,12 @@ class Api::MatchesController < ApplicationController
         total_score: 0
         )
       if @team1.save && @team2.save
-        @user1 = params[:user_id_1]
-        @user2 = params[:user_id_2]
-        @user3 = params[:user_id_3]
-        @user4 = params[:user_id_4]
-
-        @user_team1 = UserTeam.new(
-          user_id: @user1,
-          team_id: @team1.id
-          )
-        @user_team2 = UserTeam.new(
-          user_id: @user2,
-          team_id: @team1.id
-          )
-        @user_team3 = UserTeam.new(
-          user_id: @user3,
-          team_id: @team2.id
-          )
-        @user_team4 = UserTeam.new(
-          user_id: @user4,
-          team_id: @team2.id
-          )
+        
+        @user_team1 = @match.team(@user1, @team1.id)
+        @user_team2 = @match.team(@user2, @team1.id)
+        @user_team3 = @match.team(@user3, @team2.id)
+        @user_team4 = @match.team(@user4, @team2.id)
+        
         
         if @user_team1.save && @user_team2.save && @user_team3.save && @user_team4.save
           @match.name = "#{@team1.name} vs. #{@team2.name}"
@@ -50,10 +40,12 @@ class Api::MatchesController < ApplicationController
           @match.scores(@match, @user3, @team2)
           @match.scores(@match, @user4, @team2)
 
+          if @team2.scores[35]
+            render 'show.json.jbuilder'
+          else
+            render json:{errors: @match.errors.full_messages}, status: :unprocessable_entity
+          end
           
-
-
-          render 'show.json.jbuilder'
         else
           @match.destroy
           @team1.destroy
