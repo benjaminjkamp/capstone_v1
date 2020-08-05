@@ -39,6 +39,9 @@ Rails.application.routes.draw do
     patch "/rounds/:id" => "rounds#update"
     delete "/rounds/:id" => "rounds#destroy"
 
+    #score routes
+    patch "/scores/:id" => "scores#update"
+
     #tournament routes
     get "/tournaments" => "tournaments#index"
     post "/tournaments" => "tournaments#create"

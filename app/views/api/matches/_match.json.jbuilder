@@ -8,7 +8,7 @@ json.teams do
   json.array! match.teams.order(:id).each do |team|
     json.id team.id
     json.name team.name
-    json.scores team.scores
+    json.scores team.scores.order(:hole)
     json.team_scores do
       json.score_1 team.score_hole_1
       json.score_2 team.score_hole_2
