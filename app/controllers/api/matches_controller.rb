@@ -35,10 +35,10 @@ class Api::MatchesController < ApplicationController
           @match.name = "#{@team1.name} vs. #{@team2.name}"
           @match.save
 
-          @match.scores(@match, @user1, @team1)
-          @match.scores(@match, @user2, @team1)
-          @match.scores(@match, @user3, @team2)
-          @match.scores(@match, @user4, @team2)
+          @match.add_scores(@match, @user1, @team1)
+          @match.add_scores(@match, @user2, @team1)
+          @match.add_scores(@match, @user3, @team2)
+          @match.add_scores(@match, @user4, @team2)
 
           if @team2.scores[35]
             render 'show.json.jbuilder'
@@ -74,13 +74,17 @@ class Api::MatchesController < ApplicationController
     @match = Match.find(params[:id])
     @team1 = @match.teams[0]
     @team2 = @match.teams[1]
+    @team1_scores = @team1.scores
+    @team2_scores = @team2.scores
+
+    # calc_net(@match)
 
     # @match.name = "#{@team1.name} Vs. #{@team2.name}"
 
     @team1.name = params[:team1_name] || @team1.name
-    team1_scores = calculate_hole_winner(@team1, @team2)
-    team2_scores = calculate_hole_winner(@team2, @team1)
-    @team1.score_hole_1 = calculate_score(@team1, 1)
+    # team1_scores = calculate_hole_winner(@team1, @team2)
+    # team2_scores = calculate_hole_winner(@team2, @team1)
+    # @team1.score_hole_1 = calculate_score(@team1, 1)
 
 
 

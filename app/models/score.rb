@@ -3,4 +3,7 @@ class Score < ApplicationRecord
   belongs_to :user
 
   validates :year, presence: true
+
+  
+
 end

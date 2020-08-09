@@ -53,11 +53,20 @@ class Api::CoursesController < ApplicationController
       hdcp_hole_18: params[:hdcp_hole_18]
       
 
-      )
+    )
+    @par_errors = "no errors"
+    @handicap_errors = "no errors"
+    
     if @course.save
-      render 'show.json.jbuilder'
+      @par_errors = @course.add_pars(@course)
+      @handicap_errors = @course.add_handicaps(@course)
+      if @course.pars[17] && @course.handicaps[17]
+        render 'show.json.jbuilder'
+      else
+        render json:{par_errors: @par_errors, handicap_errors: @handicap_errors}, status: :unprocessable_entity
+      end
     else
-      render json:{errors: @course.errors.full_messages}, status: :unprocessable_entity
+      render json:{course_errors: @course.errors.full_messages, par_errors: @par_errors, handicap_errors: @handicap_errors}, status: :unprocessable_entity
     end
     
   end
@@ -69,9 +78,15 @@ class Api::CoursesController < ApplicationController
 
   def update
     @course = Course.find(params[:id])
-
+    @par = Par.where(course_id: @course.id, hole: params[:hole])
+    @handicap = Handicap.where(course_id: @course.id, hole: params[:hole])
+    
     @course.name = params[:name] || @course.name
     @course.location = params[:location] || @course.location
+    @par.value = params[:par] || @par.value
+    @handicap.value = params[:handicap] || @handicap.value
+
+
 
     @course.par_hole_1 = params[:par_hole_1] || @course.par_hole_1
     @course.par_hole_2 = params[:par_hole_2] || @course.par_hole_2
