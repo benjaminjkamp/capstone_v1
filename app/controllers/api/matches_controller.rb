@@ -77,55 +77,55 @@ class Api::MatchesController < ApplicationController
     @team1_scores = @team1.scores
     @team2_scores = @team2.scores
 
-    # calc_net(@match)
+    @match.calc_net(@match)
 
     # @match.name = "#{@team1.name} Vs. #{@team2.name}"
 
-    @team1.name = params[:team1_name] || @team1.name
+    
     # team1_scores = calculate_hole_winner(@team1, @team2)
     # team2_scores = calculate_hole_winner(@team2, @team1)
     # @team1.score_hole_1 = calculate_score(@team1, 1)
 
 
-
-    @team1.score_hole_1 = params[:team1_score1] || @team1.score_hole_1 || 0
-    @team1.score_hole_2 = params[:team1_score2] || @team1.score_hole_2 || 0
-    @team1.score_hole_3 = params[:team1_score3] || @team1.score_hole_3 || 0
-    @team1.score_hole_4 = params[:team1_score4] || @team1.score_hole_4 || 0
-    @team1.score_hole_5 = params[:team1_score5] || @team1.score_hole_5 || 0
-    @team1.score_hole_6 = params[:team1_score6] || @team1.score_hole_6 || 0
-    @team1.score_hole_7 = params[:team1_score7] || @team1.score_hole_7 || 0
-    @team1.score_hole_8 = params[:team1_score8] || @team1.score_hole_8 || 0
-    @team1.score_hole_9 = params[:team1_score9] || @team1.score_hole_9 || 0
-    @team1.score_hole_10 = params[:team1_score10] || @team1.score_hole_10 || 0
-    @team1.score_hole_11 = params[:team1_score11] || @team1.score_hole_11 || 0
-    @team1.score_hole_12 = params[:team1_score12] || @team1.score_hole_12 || 0
-    @team1.score_hole_13 = params[:team1_score13] || @team1.score_hole_13 || 0
-    @team1.score_hole_14 = params[:team1_score14] || @team1.score_hole_14 || 0
-    @team1.score_hole_15 = params[:team1_score15] || @team1.score_hole_15 || 0
-    @team1.score_hole_16 = params[:team1_score16] || @team1.score_hole_16 || 0
-    @team1.score_hole_17 = params[:team1_score17] || @team1.score_hole_17 || 0
-    @team1.score_hole_18 = params[:team1_score18] || @team1.score_hole_18 || 0
+    @team1.name = params[:team1_name] || @team1.name
+    @team1.score_hole_1 = @team1.calc_team_score(@team1, 1) || @team1.score_hole_1 || 0
+    @team1.score_hole_2 = @team1.calc_team_score(@team1, 2) || @team1.score_hole_2 || 0
+    @team1.score_hole_3 = @team1.calc_team_score(@team1, 3) || @team1.score_hole_3 || 0
+    @team1.score_hole_4 = @team1.calc_team_score(@team1, 4) || @team1.score_hole_4 || 0
+    @team1.score_hole_5 = @team1.calc_team_score(@team1, 5) || @team1.score_hole_5 || 0
+    @team1.score_hole_6 = @team1.calc_team_score(@team1, 6) || @team1.score_hole_6 || 0
+    @team1.score_hole_7 = @team1.calc_team_score(@team1, 7) || @team1.score_hole_7 || 0
+    @team1.score_hole_8 = @team1.calc_team_score(@team1, 8) || @team1.score_hole_8 || 0
+    @team1.score_hole_9 = @team1.calc_team_score(@team1, 9) || @team1.score_hole_9 || 0
+    @team1.score_hole_10 = @team1.calc_team_score(@team1, 10) || @team1.score_hole_10 || 0
+    @team1.score_hole_11 = @team1.calc_team_score(@team1, 11) || @team1.score_hole_11 || 0
+    @team1.score_hole_12 = @team1.calc_team_score(@team1, 12) || @team1.score_hole_12 || 0
+    @team1.score_hole_13 = @team1.calc_team_score(@team1, 13) || @team1.score_hole_13 || 0
+    @team1.score_hole_14 = @team1.calc_team_score(@team1, 14) || @team1.score_hole_14 || 0
+    @team1.score_hole_15 = @team1.calc_team_score(@team1, 15) || @team1.score_hole_15 || 0
+    @team1.score_hole_16 = @team1.calc_team_score(@team1, 16) || @team1.score_hole_16 || 0
+    @team1.score_hole_17 = @team1.calc_team_score(@team1, 17) || @team1.score_hole_17 || 0
+    @team1.score_hole_18 = @team1.calc_team_score(@team1, 18) || @team1.score_hole_18 || 0
 
     @team2.name = params[:team2_name] || @team2.name
-    @team2.score_hole_1 = params[:team2_score1] || @team2.score_hole_1 || 0
-    @team2.score_hole_2 = params[:team2_score2] || @team2.score_hole_2 || 0
-    @team2.score_hole_3 = params[:team2_score3] || @team2.score_hole_3 || 0
-    @team2.score_hole_4 = params[:team2_score4] || @team2.score_hole_4 || 0
-    @team2.score_hole_5 = params[:team2_score5] || @team2.score_hole_5 || 0
-    @team2.score_hole_6 = params[:team2_score6] || @team2.score_hole_6 || 0
-    @team2.score_hole_7 = params[:team2_score7] || @team2.score_hole_7 || 0
-    @team2.score_hole_8 = params[:team2_score8] || @team2.score_hole_8 || 0
-    @team2.score_hole_9 = params[:team2_score9] || @team2.score_hole_9 || 0
-    @team2.score_hole_10 = params[:team2_score10] || @team2.score_hole_10 || 0
-    @team2.score_hole_11 = params[:team2_score11] || @team2.score_hole_11 || 0
-    @team2.score_hole_12 = params[:team2_score12] || @team2.score_hole_12 || 0
-    @team2.score_hole_13 = params[:team2_score13] || @team2.score_hole_13 || 0
-    @team2.score_hole_14 = params[:team2_score14] || @team2.score_hole_14 || 0
-    @team2.score_hole_15 = params[:team2_score15] || @team2.score_hole_15 || 0
-    @team2.score_hole_16 = params[:team2_score16] || @team2.score_hole_16 || 0
-    @team2.score_hole_17 = params[:team2_score17] || @team2.score_hole_17 || 0
-    @team2.score_hole_18 = params[:team2_score18] || @team2.score_hole_18 || 0
+    @team2.score_hole_1 = @team2.calc_team_score(@team2, 1) || @team2.score_hole_1 || 0
+    @team2.score_hole_2 = @team2.calc_team_score(@team2, 2) || @team2.score_hole_2 || 0
+    @team2.score_hole_3 = @team2.calc_team_score(@team2, 3) || @team2.score_hole_3 || 0
+    @team2.score_hole_4 = @team2.calc_team_score(@team2, 4) || @team2.score_hole_4 || 0
+    @team2.score_hole_5 = @team2.calc_team_score(@team2, 5) || @team2.score_hole_5 || 0
+    @team2.score_hole_6 = @team2.calc_team_score(@team2, 6) || @team2.score_hole_6 || 0
+    @team2.score_hole_7 = @team2.calc_team_score(@team2, 7) || @team2.score_hole_7 || 0
+    @team2.score_hole_8 = @team2.calc_team_score(@team2, 8) || @team2.score_hole_8 || 0
+    @team2.score_hole_9 = @team2.calc_team_score(@team2, 9) || @team2.score_hole_9 || 0
+    @team2.score_hole_10 = @team2.calc_team_score(@team2, 10) || @team2.score_hole_10 || 0
+    @team2.score_hole_11 = @team2.calc_team_score(@team2, 11) || @team2.score_hole_11 || 0
+    @team2.score_hole_12 = @team2.calc_team_score(@team2, 12) || @team2.score_hole_12 || 0
+    @team2.score_hole_13 = @team2.calc_team_score(@team2, 13) || @team2.score_hole_13 || 0
+    @team2.score_hole_14 = @team2.calc_team_score(@team2, 14) || @team2.score_hole_14 || 0
+    @team2.score_hole_15 = @team2.calc_team_score(@team2, 15) || @team2.score_hole_15 || 0
+    @team2.score_hole_16 = @team2.calc_team_score(@team2, 16) || @team2.score_hole_16 || 0
+    @team2.score_hole_17 = @team2.calc_team_score(@team2, 17) || @team2.score_hole_17 || 0
+    @team2.score_hole_18 = @team2.calc_team_score(@team2, 18) || @team2.score_hole_18 || 0
 
     @team1.total_score = (@team1.score_hole_1 + 
        @team1.score_hole_2 + 

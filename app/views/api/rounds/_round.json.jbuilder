@@ -10,7 +10,7 @@ json.course do
 end
 
 json.matches do
-  json.array! round.matches do |match|
+  json.array! round.matches.order(:id) do |match|
     json.partial! match, partial: "api/matches/match", as: :match
   end
 
