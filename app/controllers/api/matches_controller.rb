@@ -35,15 +35,15 @@ class Api::MatchesController < ApplicationController
           @match.name = "#{@team1.name} vs. #{@team2.name}"
           @match.save
 
-          @match.add_scores(@match, @user1, @team1)
-          @match.add_scores(@match, @user2, @team1)
-          @match.add_scores(@match, @user3, @team2)
-          @match.add_scores(@match, @user4, @team2)
+          @player1_scores = @match.add_scores(@match, @user1, @team1)
+          @player2_scores = @match.add_scores(@match, @user2, @team1)
+          @player3_scores = @match.add_scores(@match, @user3, @team2)
+          @player4_scores = @match.add_scores(@match, @user4, @team2)
 
           if @team2.scores[35]
             render 'show.json.jbuilder'
           else
-            render json:{errors: @match.errors.full_messages}, status: :unprocessable_entity
+            render json:{player1_errors: @player1_scores, player2_errors: @player2_scores, player3_errors: @player3_scores, player4_errors: @player4_scores}, status: :unprocessable_entity
           end
           
         else

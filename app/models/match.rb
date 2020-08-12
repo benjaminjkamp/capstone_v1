@@ -36,7 +36,7 @@ class Match < ApplicationRecord
       )
       if score.save
       else
-        break
+        return score.errors.full_messages
       end
       index += 1
     end
