@@ -12,6 +12,7 @@ class Api::TournamentsController < ApplicationController
     @tournament = Tournament.new(
       name: params[:name],
       user_id: current_user.id,
+      year: params[:year] || 2020,
 
       red_team_2mantotal: 0,
       red_team_2manbb: 0,
