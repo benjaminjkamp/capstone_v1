@@ -23,8 +23,16 @@ class ApplicationController < ActionController::Base
 
   def authenticate_user
     unless current_user
-      render json: {}, status: :unauthorized
+      render json: {errors: "You must be logged in to view this page."}, status: :unauthorized
     end
+  end
+
+  def authenticate_self
+    unless @score.user_id == current_user.id
+      render json: {errors: "You cannot edit another player's data."}, status: :unauthorized
+      return false
+    end
+    return true
   end
 
   # def authenticate_commissioner
