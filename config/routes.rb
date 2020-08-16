@@ -47,6 +47,7 @@ Rails.application.routes.draw do
     post "/tournaments" => "tournaments#create"
     get "/tournaments/:id" => "tournaments#show"
     patch "/tournaments/:id" => "tournaments#update"
+    delete "/tournaments/:id" => "tournaments#destroy"
 
     #session routes
     post "/sessions" => "sessions#create"

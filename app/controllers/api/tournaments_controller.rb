@@ -72,6 +72,12 @@ class Api::TournamentsController < ApplicationController
     end
   end
 
+  def destroy
+    @tournament = Tournament.find(params[:id])
+    @tournament.destroy
+    render json: {success: "The tournament has been deleted."}
+    
+  end
 
 
 end
