@@ -43,41 +43,54 @@ class Match < ApplicationRecord
   end
   
   def calc_net(match)
+    all_net_scores = []
+    handicaps = []
+    player1_net_scores = Score.where(team_id: match.teams[0].id, user_id: match.teams[0].users[0].id).order(:team_id, :id)
+    player3_net_scores = Score.where(team_id: match.teams[1].id, user_id: match.teams[1].users[0].id).order(:team_id, :id) 
 
-    player1_net_scores = Score.where(team_id: match.teams[0].id, user_id: match.teams[0].users[0].id).order(:id)
-    player2_net_scores = Score.where(team_id: match.teams[0].id, user_id: match.teams[0].users[1].id).order(:id)
-    player3_net_scores = Score.where(team_id: match.teams[1].id, user_id: match.teams[1].users[0].id).order(:id)
-    player4_net_scores = Score.where(team_id: match.teams[1].id, user_id: match.teams[1].users[1].id).order(:id)
+    if match.teams[0].users[1]
+      player2_net_scores = Score.where(team_id: match.teams[0].id, user_id: match.teams[0].users[1].id).order(:id) 
+      player4_net_scores = Score.where(team_id: match.teams[1].id, user_id: match.teams[1].users[1].id).order(:id)
+
+      player2_net_scores.each do |score|
+        score.net_score = score.score
+      end
+      player4_net_scores.each do |score|
+        score.net_score = score.score
+      end
+      handicap2 = match.teams[0].users[1].handicap_low_net
+      handicap4 = match.teams[1].users[1].handicap_low_net
+
+      handicaps << handicap2
+      handicaps << handicap4
+
+      all_net_scores << player2_net_scores
+      all_net_scores << player4_net_scores
+    end
 
     player1_net_scores.each do |score|
-      score.net_score = score.score
-    end
-    player2_net_scores.each do |score|
       score.net_score = score.score
     end
     player3_net_scores.each do |score|
       score.net_score = score.score
     end
-    player4_net_scores.each do |score|
-      score.net_score = score.score
-    end
+    
 
     handicap1 = match.teams[0].users[0].handicap_low_net
-    handicap2 = match.teams[0].users[1].handicap_low_net
     handicap3 = match.teams[1].users[0].handicap_low_net
-    handicap4 = match.teams[1].users[1].handicap_low_net
-    handicaps = []
+    
+    
     handicaps << handicap1
-    handicaps << handicap2
+    
     handicaps << handicap3
-    handicaps << handicap4
+    
 
     course_handicaps = []
-    all_net_scores = []
+    
     all_net_scores << player1_net_scores
-    all_net_scores << player2_net_scores
+    
     all_net_scores << player3_net_scores
-    all_net_scores << player4_net_scores
+    
 
     match.round.course.handicaps.order(:id).each do |handicap|
       course_handicaps << handicap.value
@@ -89,7 +102,7 @@ class Match < ApplicationRecord
       handicap = handicaps[index]
       h = 0
       i = 0
-      player.order(:id)
+      # player.order(:id)
       
       while i < handicap
         h = course_handicaps.index(i+1)
@@ -109,40 +122,86 @@ class Match < ApplicationRecord
     
   end
 
-  # def 2man_best_ball(team, hole)
-  #   score = 0.0
 
-  #   score1 = Score.find_by(team_id: team.id, user_id: team.users[0].id, hole: hole)
-  #   score2 = Score.find_by(team_id: team.id, user_id: team.users[1].id, hole: hole)
+  def calc_team_net(match)
+    all_net_scores = []
+    handicaps = []
+    # team1_net_scores = Score.where(team_id: match.teams.order(:id)[0].id, user_id: match.teams.order(:id)[0].users[0].id)
+    # team2_net_scores = Score.where(team_id: match.teams.order(:id)[1].id, user_id: match.teams.order(:id)[1].users[1].id)
+    team1_scores = Score.where(team_id: match.teams.order(:id)[0].id).order(:id)
+    team2_scores = Score.where(team_id: match.teams.order(:id)[1].id).order(:id)
+    team1_net_scores = []
+    team2_net_scores = []
 
-  #   if score1.net_score < score2.net_score
-  #     score = score1.net_score
-  #   else
-  #     score = score2.net_score
-  #   end
+    team1_scores.each do |score|
+      if score.score && score.score > 0
+        team1_net_scores << score
+        score.net_score = score.score
+      end
+    end
+    team2_scores.each do |score|
+      if score.score && score.score > 0
+        team2_net_scores << score
+        score.net_score = score.score
+      end
+    end
+    # team2_net_scores.each do |score|
+    #   score.net_score = score.score
+    # end
+    
+    handicap1 = (match.teams.order(:id)[0].users[0].handicap_low_net + match.teams.order(:id)[0].users[1].handicap_low_net) / 2
+    handicap2 = (match.teams.order(:id)[1].users[0].handicap_low_net + match.teams.order(:id)[1].users[1].handicap_low_net) / 2
 
     
-  # end
+    handicaps << handicap1
+    handicaps << handicap2
 
-  # def 2man_total_score(team)
+    print "handicaps: "
+    print handicaps
     
-  # end
+    all_net_scores << team1_net_scores
+    all_net_scores << team2_net_scores
+    print "net scores 1"
+    print all_net_scores[0]
+    print "net scores 2"
+    print all_net_scores[1]
+    course_handicaps = []
+    
 
-  # def stableford(team)
-    
-  # end
+    match.round.course.handicaps.order(:id).each do |handicap|
+      course_handicaps << handicap.value
+    end
 
-  # def alt_shot(team)
+    index = 0
+    print course_handicaps
+    all_net_scores.each do |team|
+      
+      handicap = handicaps[index]
+      print "handicap: " + handicap.to_s
+      h = 0
+      i = 0
+      # player.order(:id)
+      print team
+      while i < handicap
+        h = course_handicaps.index(i+1)
+        if handicap >= course_handicaps[h]
+          team[h].net_score -= 1
+          team[h].save
+          
+        end
+        if i > 16
+          handicap -= 18
+          i = -1        
+        end
+        i += 1
+      end
+      index += 1
+      
+    end 
     
-  # end
+  end
 
-  # def 1v1(team)
-    
-  # end
-
-  # def scramble(team)
-    
-  # end
+ 
 
   
   
