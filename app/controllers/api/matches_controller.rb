@@ -1,6 +1,6 @@
 class Api::MatchesController < ApplicationController
 
-  before_action :authenticate_user, only: [:create, :update, :destroy]
+  before_action :authenticate_user
 
   def create
     @user1 = params[:user_id_1]

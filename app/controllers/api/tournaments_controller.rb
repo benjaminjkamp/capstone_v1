@@ -1,7 +1,7 @@
 class Api::TournamentsController < ApplicationController
 
   # before_action :authenticate_commissioner, only: [:update, :destroy]
-
+  before_action :authenticate_user
 
   def index
     @tournaments = Tournament.all

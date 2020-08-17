@@ -1,5 +1,7 @@
 class Api::ScoresController < ApplicationController
 
+  before_action :authenticate_user
+
   def update
     @score = Score.find(params[:id])
     if authenticate_self

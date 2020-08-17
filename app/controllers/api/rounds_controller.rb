@@ -1,6 +1,6 @@
 class Api::RoundsController < ApplicationController
 
-  before_action :authenticate_user, only: [:create, :update, :destroy]
+  before_action :authenticate_user
 
   def index
     @rounds = Round.all
