@@ -107,8 +107,10 @@ class Match < ApplicationRecord
       while i < handicap
         h = course_handicaps.index(i+1)
         if handicap >= course_handicaps[h]
-          player[h].net_score -= 1
-          player[h].save
+          if player[h].net_score
+            player[h].net_score -= 1
+            player[h].save
+          end
         end
         if i > 16
           handicap -= 18

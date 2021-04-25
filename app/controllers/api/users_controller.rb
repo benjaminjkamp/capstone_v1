@@ -33,30 +33,47 @@ class Api::UsersController < ApplicationController
   end
 
   def show
-    @user = current_user
+    if params[:id] == "me"
+      @user = current_user
+    else
+      @user = User.find(params[:id])
+    end
     render 'show.json.jbuilder'
   end
 
   def update
-    @user = current_user
-    @user.first_name = params[:first_name] || @user.first_name
-    @user.last_name = params[:last_name] || @user.last_name
-    @user.phone_number = params[:phone_number] || @user.phone_number
-    @user.email = params[:email] || @user.email
-    
-    @user.avg_gnc = params[:avg_gnc] || @user.avg_gnc
-    @user.avg_two_year = params[:avg_two_year] || @user.avg_two_year
-    @user.ryder_cup_wins = params[:ryder_cup_wins] || @user.ryder_cup_wins
-    @user.ryder_cup_losses = params[:ryder_cup_losses] || @user.ryder_cup_losses
-    @user.ryder_cup_ties = params[:ryder_cup_ties] || @user.ryder_cup_ties
-    @user.record_2017 = params[:record_2017] || @user.record_2017
-    @user.handicap_low_net = params[:handicap_low_net] || @user.handicap_low_net
-    @user.handicap_skins = params[:handicap_skins] || @user.handicap_skins
-
-    if @user.save
-      render 'show.json.jbuilder'
+    if params[:id] == "me"
+      @user1 = current_user
     else
-      render json:{errors: @users.errors.full_messages}, status: :unprocessable_entity
+      @user1 = User.find(params[:id])
+    end
+    @user = current_user
+    @user1.first_name = params[:first_name] || @user1.first_name
+    @user1.last_name = params[:last_name] || @user1.last_name
+    @user1.phone_number = params[:phone_number] || @user1.phone_number
+    @user1.email = params[:email] || @user1.email
+
+    @admin_restricted = false
+    if params[:admin] != nil && authenticate_commissioner
+      @user1.admin = params[:admin]      
+    end
+
+    @user1.avg_gnc = params[:avg_gnc] || @user1.avg_gnc
+    @user1.avg_two_year = params[:avg_two_year] || @user1.avg_two_year
+    @user1.ryder_cup_wins = params[:ryder_cup_wins] || @user1.ryder_cup_wins
+    @user1.ryder_cup_losses = params[:ryder_cup_losses] || @user1.ryder_cup_losses
+    @user1.ryder_cup_ties = params[:ryder_cup_ties] || @user1.ryder_cup_ties
+    @user1.record_2017 = params[:record_2017] || @user1.record_2017
+    @user1.handicap_low_net = params[:handicap_low_net] || @user1.handicap_low_net
+    @user1.handicap_skins = params[:handicap_skins] || @user1.handicap_skins
+
+    if @admin_restricted
+    else
+      if @user1.save
+        render 'show.json.jbuilder'
+      else
+        render json:{errors: @users.errors.full_messages}, status: :unprocessable_entity
+      end
     end
   end
     

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_07_140103) do
+ActiveRecord::Schema.define(version: 2021_04_24_053629) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -89,6 +89,7 @@ ActiveRecord::Schema.define(version: 2020_08_07_140103) do
     t.datetime "updated_at", null: false
     t.integer "tournament_id"
     t.string "format"
+    t.boolean "finalized", default: false
   end
 
   create_table "scores", force: :cascade do |t|
@@ -105,27 +106,27 @@ ActiveRecord::Schema.define(version: 2020_08_07_140103) do
   create_table "teams", force: :cascade do |t|
     t.string "name"
     t.integer "match_id"
-    t.decimal "score_hole_1", precision: 2, scale: 1
-    t.decimal "score_hole_2", precision: 2, scale: 1
-    t.decimal "score_hole_3", precision: 2, scale: 1
-    t.decimal "score_hole_4", precision: 2, scale: 1
-    t.decimal "score_hole_5", precision: 2, scale: 1
-    t.decimal "score_hole_6", precision: 2, scale: 1
-    t.decimal "score_hole_7", precision: 2, scale: 1
-    t.decimal "score_hole_8", precision: 2, scale: 1
-    t.decimal "score_hole_9", precision: 2, scale: 1
-    t.decimal "score_hole_10", precision: 2, scale: 1
-    t.decimal "score_hole_11", precision: 2, scale: 1
-    t.decimal "score_hole_12", precision: 2, scale: 1
-    t.decimal "score_hole_13", precision: 2, scale: 1
-    t.decimal "score_hole_14", precision: 2, scale: 1
-    t.decimal "score_hole_15", precision: 2, scale: 1
-    t.decimal "score_hole_16", precision: 2, scale: 1
-    t.decimal "score_hole_17", precision: 2, scale: 1
-    t.decimal "score_hole_18", precision: 2, scale: 1
+    t.decimal "score_hole_1", precision: 3, scale: 1
+    t.decimal "score_hole_2", precision: 3, scale: 1
+    t.decimal "score_hole_3", precision: 3, scale: 1
+    t.decimal "score_hole_4", precision: 3, scale: 1
+    t.decimal "score_hole_5", precision: 3, scale: 1
+    t.decimal "score_hole_6", precision: 3, scale: 1
+    t.decimal "score_hole_7", precision: 3, scale: 1
+    t.decimal "score_hole_8", precision: 3, scale: 1
+    t.decimal "score_hole_9", precision: 3, scale: 1
+    t.decimal "score_hole_10", precision: 3, scale: 1
+    t.decimal "score_hole_11", precision: 3, scale: 1
+    t.decimal "score_hole_12", precision: 3, scale: 1
+    t.decimal "score_hole_13", precision: 3, scale: 1
+    t.decimal "score_hole_14", precision: 3, scale: 1
+    t.decimal "score_hole_15", precision: 3, scale: 1
+    t.decimal "score_hole_16", precision: 3, scale: 1
+    t.decimal "score_hole_17", precision: 3, scale: 1
+    t.decimal "score_hole_18", precision: 3, scale: 1
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.decimal "total_score", precision: 3, scale: 1
+    t.decimal "total_score", precision: 4, scale: 1
   end
 
   create_table "tournaments", force: :cascade do |t|
@@ -169,6 +170,7 @@ ActiveRecord::Schema.define(version: 2020_08_07_140103) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "password_digest"
+    t.boolean "admin"
   end
 
 end

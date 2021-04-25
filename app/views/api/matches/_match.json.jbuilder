@@ -1,7 +1,7 @@
 json.id match.id
 json.name match.name
-json.team_1_score match.teams[0].total_score
-json.team_2_score match.teams[1].total_score if match.round.format != "Scramble"
+json.team_1_score match.teams.order(:id)[0].total_score
+json.team_2_score match.teams.order(:id)[1].total_score if match.round.format != "Scramble"
 json.winner match.winner
 
 json.teams do

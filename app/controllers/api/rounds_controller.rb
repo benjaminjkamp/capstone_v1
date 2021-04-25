@@ -24,13 +24,27 @@ class Api::RoundsController < ApplicationController
 
   def show
     @round = Round.find(params[:id])
-    render 'show.json.jbuilder'    
+    if @round
+      render 'show.json.jbuilder'  
+    else
+      render json:{errors: @round.errors.full_messages, message: "Round Not Found."}, status: :unprocessable_entity
+    end  
   end
 
   def update
     @round = Round.find(params[:id])
+    @tournament = Tournament.find(@round.tournament_id)
+
     @round.name = params[:name] || @round.name
     @round.course_id = params[:course_id] || @round.course_id
+    if params[:finalized] != nil
+      @round.finalized = params[:finalized]
+      if params[:finalized]
+        wins = @round.update_standings(@round, @tournament)
+      end
+    end
+
+
 
     if @round.save
       render 'show.json.jbuilder'

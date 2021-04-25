@@ -24,20 +24,33 @@ class ApplicationController < ActionController::Base
   def authenticate_user
     unless current_user
       render json: {errors: "You must be logged in to view this page."}, status: :unauthorized
-    end
-  end
-
-  def authenticate_self
-    unless @score.user_id == current_user.id
-      render json: {errors: "You cannot edit another player's data."}, status: :unauthorized
       return false
     end
     return true
   end
 
-  # def authenticate_commissioner
-  #   unless current_user.id == @tournament.user_id
-  #     render json: {}, status: :unauthorized
-  #   end
-  # end
+  def authenticate_self
+    unless @score.user_id == current_user.id
+      return false
+    end
+    return true
+  end
+
+  def authenticate_admin
+    unless @user.admin
+      render json: {errors: "You are not authorized to modify this. Please ask an admin or the commissioner for assistance."}, status: :unauthorized
+      @admin_restricted = true
+      return false
+    end
+    return true
+  end
+
+  def authenticate_commissioner
+    unless Tournament.find_by(user_id: @user.id)
+      render json: {errors: "You are not authorized to modify this. Please ask the commmissioner for assistance."}, status: :unauthorized
+      @admin_restricted = true
+      return false
+    end
+    return true
+  end
 end

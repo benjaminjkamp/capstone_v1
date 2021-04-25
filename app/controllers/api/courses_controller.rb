@@ -134,8 +134,12 @@ class Api::CoursesController < ApplicationController
       if @course.save && @par.save && @handicap.save
         render 'show.json.jbuilder'
       else 
-        render json:{errors: @course.errors.full_messages}, status: :unprocessable_entity
+        render json:{course_errors: @course.errors.full_messages, par_errors: @par.errors.full_messages, handicap_errors: @handicap.errors.full_messages}, status: :unprocessable_entity
       end
+    elsif @course.save
+      render 'show.json.jbuilder'
+    else
+      render json:{errors: @course.errors.full_messages}, status: :unprocessable_entity
     
     end
     

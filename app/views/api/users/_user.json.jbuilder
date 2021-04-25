@@ -4,6 +4,7 @@ json.first_name user.first_name
 json.last_name user.last_name
 json.gnc_average user.avg_gnc
 json.two_year_average user.avg_two_year
+json.admin user.admin
 
 json.ryder_cup_record do
   json.formatted_ryder_cup_record "#{user.ryder_cup_wins}-#{user.ryder_cup_losses}-#{user.ryder_cup_ties}"

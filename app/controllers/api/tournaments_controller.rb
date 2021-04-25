@@ -29,6 +29,8 @@ class Api::TournamentsController < ApplicationController
 
     if @tournament.save
       @commissioner = User.find(@tournament.user_id)
+      @commissioner.admin = true
+      @commissioner.save
       render 'show.json.jbuilder'
     else
       render json:{errors: @user.errors.full_messages}, status: :unprocessable_entity
@@ -38,6 +40,8 @@ class Api::TournamentsController < ApplicationController
   def show
     @tournament = Tournament.find(params[:id])
     @commissioner = User.find(@tournament.user_id)
+    @commissioner.admin = true
+    @commissioner.save
     render 'show.json.jbuilder'
   end
 

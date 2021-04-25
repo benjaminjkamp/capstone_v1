@@ -10,11 +10,15 @@ class Team < ApplicationRecord
     score1 = Score.find_by(team_id: @team.id, user_id: @team.users[0].id, hole: @hole)
     score2 = Score.find_by(team_id: @team.id, user_id: @team.users[1].id, hole: @hole)
 
-    if score1.net_score < score2.net_score
-      score = score1.net_score
-    else
-      score = score2.net_score
+    if score1.net_score && score2.net_score
+      if score1.net_score < score2.net_score
+        score = score1.net_score
+      else
+        score = score2.net_score
+      end
     end
+    print "best ball"
+    print score
     return score
   end
 
@@ -23,7 +27,13 @@ class Team < ApplicationRecord
     score1 = Score.find_by(team_id: @team.id, user_id: @team.users[0].id, hole: @hole)
     score2 = Score.find_by(team_id: @team.id, user_id: @team.users[1].id, hole: @hole)
 
-    score = score1.net_score + score2.net_score
+    if score1.score && score2.score
+      score = score1.net_score + score2.net_score
+    elsif score1.score
+      score = score1.net_score
+    elsif score2.score
+      score = score2.net_score
+    end
 
     return score    
   end
@@ -58,8 +68,8 @@ class Team < ApplicationRecord
     score2 = Score.find_by(team_id: @team.id, user_id: @team.users[1].id, hole: @hole)
     print "score1: " + score1.net_score.to_s
     print "score2: " + score2.net_score.to_s
-    score = score1.net_score if score1.net_score
-    score = score2.net_score if score2.net_score
+    score = score1.score if score1.score
+    score = score2.score if score2.score
 
     return score
   end
