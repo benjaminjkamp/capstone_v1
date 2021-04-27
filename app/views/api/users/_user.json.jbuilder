@@ -2,6 +2,7 @@ json.id user.id
 json.name "#{user.first_name} #{user.last_name}"
 json.first_name user.first_name
 json.last_name user.last_name
+json.team user.team_color
 json.gnc_average user.avg_gnc
 json.two_year_average user.avg_two_year
 json.admin user.admin

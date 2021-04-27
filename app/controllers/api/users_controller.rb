@@ -16,6 +16,7 @@ class Api::UsersController < ApplicationController
       password: params[:password],
       password_confirmation: params[:password_confirmation],
 
+      team_color: "None",
       avg_gnc: params[:avg_gnc] || 0,
       avg_two_year: params[:avg_two_year] || 0.00,
       ryder_cup_wins: params[:ryder_cup_wins] || 0,
@@ -56,6 +57,12 @@ class Api::UsersController < ApplicationController
     @admin_restricted = false
     if params[:admin] != nil && authenticate_commissioner
       @user1.admin = params[:admin]      
+    end
+
+    if params[:team_color] == "Red" || params[:team_color] == "Blue"
+      @user1.team_color = params[:team_color]
+    elsif params[:team_color]
+      @user1.team_color = "None"
     end
 
     @user1.avg_gnc = params[:avg_gnc] || @user1.avg_gnc
