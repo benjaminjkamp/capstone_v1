@@ -1,5 +1,6 @@
 json.id tournament.id
 json.name tournament.name
+json.commissioner User.find(tournament.user_id)
 
 json.red_team_2mantotal tournament.red_team_2mantotal
 json.red_team_2manbb tournament.red_team_2manbb

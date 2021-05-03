@@ -86,7 +86,7 @@ class Api::MatchesController < ApplicationController
           @user_team2.destroy
           @user_team3.destroy
           
-          render json:{errors: @match.errors.full_messages}, status: :unprocessable_entity
+          render json:{errors: @match.errors.full_messages, other_errors: "Failed to save team(s)"}, status: :unprocessable_entity
         end
       else
         render json:{errors: @match.errors.full_messages}, status: :unprocessable_entity

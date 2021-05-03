@@ -14,7 +14,12 @@ json.ryder_cup_record do
   json.ryder_cup_ties user.ryder_cup_ties
 end
 
-json.record_2017 user.record_2017
+json.last_year_record do
+  json.wins user.wins_last_year
+  json.losses user.losses_last_year
+  json.ties user.ties_last_year
+end
+
 json.low_net_handicap user.handicap_low_net
 json.skins_handicap user.handicap_skins
 

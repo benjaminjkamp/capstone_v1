@@ -70,7 +70,12 @@ class Api::UsersController < ApplicationController
     @user1.ryder_cup_wins = params[:ryder_cup_wins] || @user1.ryder_cup_wins
     @user1.ryder_cup_losses = params[:ryder_cup_losses] || @user1.ryder_cup_losses
     @user1.ryder_cup_ties = params[:ryder_cup_ties] || @user1.ryder_cup_ties
-    @user1.record_2017 = params[:record_2017] || @user1.record_2017
+    
+    @user1.wins_last_year = params[:wins_last_year] || @user1.wins_last_year
+    @user1.losses_last_year = params[:losses_last_year] || @user1.losses_last_year
+    @user1.ties_last_year = params[:ties_last_year] || @user1.ties_last_year
+    
+
     @user1.handicap_low_net = params[:handicap_low_net] || @user1.handicap_low_net
     @user1.handicap_skins = params[:handicap_skins] || @user1.handicap_skins
 
